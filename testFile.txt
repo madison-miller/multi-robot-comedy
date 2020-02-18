@@ -1,6 +1,6 @@
 2: I am a street artist and I learnt quite a few things about Robot comedy.
 2: At first
-2: I heard it’s all about the delivery
+2: I heard <br/> it’s all about the delivery
 2: * too bad
 2: * I don’t have legs.
 2: So then

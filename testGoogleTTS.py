@@ -6,6 +6,9 @@ Note: ssml must be well-formed according to:
 import os
 import csv
 
+#to process any special delimters we put in the script file
+import re
+
 from urllib3.filepost import writer
 
 os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = './49050.json'
@@ -18,12 +21,34 @@ Oline = (Orig.split('\n'))
 mp3counter = 1
 lengthCounter = 0
 
+
+'''
+this function will replace special character sequences in a text line with
+the equivalent SSML and returns the modified line
+
+Right now it only recognizes <br/> being equivalent to <break time="3s"/>
+To add more sequences, add them to the dictionary
+'''
+def replace_special_chars_with_ssml(line):
+    special_character_ssml_dict = {
+            r"(\<br\/\>)": '<break time="3s"/>', #this regex matches <br/>
+            }
+
+    for special_char, ssml_string  in special_character_ssml_dict.items():
+        (modified_line, no_of_replacements) = re.subn(special_char, ssml_string, line)
+        print("Made %s replacements. \n Line is now: %s" 
+                % (no_of_replacements, modified_line)
+            )
+
+    return modified_line
+
 # Instantiates a client
 client = texttospeech.TextToSpeechClient()
 
 with open('gestureFile.csv', mode='w', newline='') as file:
     writer = csv.writer(file)
     for i in Oline:
+
         Oword = (i.split(' '))
         textMP3 = []
         emp = 0
@@ -149,15 +174,15 @@ with open('gestureFile.csv', mode='w', newline='') as file:
                 textMP3 = i[3:len(i)]
 
 
-
-
+        #replace special chars with ssml in the line
+        textMP3 = replace_special_chars_with_ssml(textMP3);
 
         # Select the type of audio file you want returned
         # audio_config = texttospeech.types.AudioConfig(
         #     audio_encoding=texttospeech.enums.AudioEncoding.MP3)
 
-        # Set the text input to be synthesized
-        synthesis_input = texttospeech.types.SynthesisInput(text=textMP3)
+        # Set the text input to be synthesized in SSML format
+        synthesis_input = texttospeech.types.SynthesisInput(ssml=textMP3)
 
         # Perform the text-to-speech request on the text input with the selected
         # voice parameters and audio file type
