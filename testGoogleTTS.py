@@ -177,6 +177,9 @@ with open('gestureFile.csv', mode='w', newline='') as file:
         #replace special chars with ssml in the line
         textMP3 = replace_special_chars_with_ssml(textMP3);
 
+        #make textmp3 look like SSML
+        textMP3 = "<speak> %s </speak>" % (textMP3)
+
         # Select the type of audio file you want returned
         # audio_config = texttospeech.types.AudioConfig(
         #     audio_encoding=texttospeech.enums.AudioEncoding.MP3)
