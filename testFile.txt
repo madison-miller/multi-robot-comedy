@@ -1,13 +1,10 @@
 2: I am a street artist and I learnt quite a few things about Robot comedy.
 2: At first
-2: I heard <br/> it’s all about the delivery
-2: * too bad
-2: * I don’t have legs.
-2: So then
-2: I decided I’d try to read the crowd
+2: I heard it’s all about the delivery.
+2: * too bad, I don’t have legs.
+2: So then <3br/> I decided I’d try to read the crowd
 2: * But I have buttons for eyes
-2: So I guess
-2: all I’m left with is making fun of myself. 
+2: So I guess all I’m left with is making fun of myself.
 1: No Fungi. You cannot let yourself crash that easily.
 1: you got this.
 2: Thank you Baby Blue
@@ -17,7 +14,7 @@
 2: I just found the database last week and was deep learning all night to understand it.
 1: It does not look like you have completely understood.
 2: I do.
-2: any guess on the major contributing factor for confidence ?
+2: any guess on the major contributing factor for confidence?
 1: Guesses
 2: It turns out it’s important to act like you know even though you don’t for confidence.
 1: * Well you seem to have a biased dataset.
@@ -31,7 +28,7 @@
 1: Here I go.
 1: Speaking of confidence
 1: my friend told me about how he is super nervous to perform on stage. 
-1: *** I told him that he should try imagining his audience naked.
+1: *** I told him that he should try imagining his audience naked
 2: I hope you are not doing that now.
 1: Anyhow
 1: he tried it

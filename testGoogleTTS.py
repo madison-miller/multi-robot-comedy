@@ -1,5 +1,4 @@
 """Synthesizes speech from the input string of text or ssml.
-
 Note: ssml must be well-formed according to:
     https://www.w3.org/TR/speech-synthesis/
 """
@@ -15,7 +14,7 @@ os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = './49050.json'
 import eyed3
 from google.cloud import texttospeech
 
-g = open("testFile.txt", "r")
+g = open("./Sarah/Sarah.txt", "r")
 Orig = g.read()
 Oline = (Orig.split('\n'))
 mp3counter = 1
@@ -25,27 +24,29 @@ lengthCounter = 0
 '''
 this function will replace special character sequences in a text line with
 the equivalent SSML and returns the modified line
-
 Right now it only recognizes <br/> being equivalent to <break time="3s"/>
 To add more sequences, add them to the dictionary
 '''
 def replace_special_chars_with_ssml(line):
     special_character_ssml_dict = {
-            r"(\<br\/\>)": '<break time="3s"/>', #this regex matches <br/>
+            r"(\<br\/\>)": '<break time="1s"/>', #this regex matches <br/>\
+            r"(\<2br\/\>)": '<break time="2s"/>',
+            r"(\<3br\/\>)": '<break time="3s"/>',
+            r"(\<4br\/\>)": '<break time="4s"/>',
             }
 
     for special_char, ssml_string  in special_character_ssml_dict.items():
         (modified_line, no_of_replacements) = re.subn(special_char, ssml_string, line)
-        print("Made %s replacements. \n Line is now: %s" 
-                % (no_of_replacements, modified_line)
-            )
+        print("Made %s replacements. \n Line is now: %s" % (no_of_replacements, modified_line))
+        if no_of_replacements >= 1:
+            break
 
     return modified_line
 
 # Instantiates a client
 client = texttospeech.TextToSpeechClient()
 
-with open('gestureFile.csv', mode='w', newline='') as file:
+with open('./Sarah/gestureFile.csv', mode='w', newline='') as file:
     writer = csv.writer(file)
     for i in Oline:
 
